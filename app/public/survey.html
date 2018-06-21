@@ -11,6 +11,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
      <!-- FontAwesome -->
      <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
+     <!-- Jquery -->
+     <script src="http://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <title>Survey</title>
 </head>
 <body style='background-color: #eee'>
@@ -41,7 +43,7 @@
             <div class="col-sm-2"></div>
             <div class="col-sm-8">
                 <label class="mt-2"><strong>Name</strong></label>
-                <input type='text' class="w-100" />
+                <input type='text' id="name" class="w-100" />
                 <label class="mt-2"><strong>Picture Link</strong></label>
                 <input class="w-100" id="img"/>
                 <h3 class="mt-2">Question 1</h1>
@@ -150,12 +152,12 @@
 </body>
 
 <script>
-    $("#submit").on("click", function(event) {
-      event.preventDefault();
 
-        const user = {
+    $("#submit").on("click", (event) => {
+
+    var user = {
           name: $("#name").val(),
-          imageLink: $("#img").val(),
+          image: $("#img").val(),
           values: [
             $("#q1").val(),
             $("#q2").val(),
@@ -172,14 +174,14 @@
 
         $.post("/api/friends", user, (res) => {
 
-          $("#friend-name").text(res.name);
-          $("#friend-img").attr("src", res.image);
+            $("#friend-name").text(res.name);
+            $("#friend-img").attr("src", res.image);
+            $("#modal").modal("toggle");
+       
+        })
 
-          $("#modal").modal("toggle");
-
-        });
-     
     });
+
 </script>
 
 </html>
