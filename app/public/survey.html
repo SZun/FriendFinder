@@ -14,10 +14,28 @@
     <title>Survey</title>
 </head>
 <body style='background-color: #eee'>
+    <!-- Modal -->
+    <div class="modal" id="modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title">Your New Friend!</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <p><strong id="friend-name"></strong></p>
+                  <img id="friend-img" src="" alt="">
+                </div>
+              </div>
+            </div>
+          </div>
+    <!-- Header -->
     <header>
         <h1 class="text-center mt-2">Survey</h1>
     </header>
-    
+    <!-- Survey -->
     <div class="container">
         <div class="row">
             <div class="col-sm-2"></div>
@@ -25,10 +43,10 @@
                 <label class="mt-2"><strong>Name</strong></label>
                 <input type='text' class="w-100" />
                 <label class="mt-2"><strong>Picture Link</strong></label>
-                <input class="w-100" />
+                <input class="w-100" id="img"/>
                 <h3 class="mt-2">Question 1</h1>
                 <label class="mt-2"><strong>Is having fun important to your friendship?</strong></label><br>
-                <select name="" id="">
+                <select name="" id="q1">
                     <option value="1">1 (Strongly Agree)</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -37,7 +55,7 @@
                 </select>
                 <h3 class="mt-2">Question 2</h1>
                 <label class="mt-2"><strong>Do you like to go to concerts with friends?</strong></label><br>
-                <select name="" id="">
+                <select name="" id="q2">
                     <option value="1">1 (Strongly Agree)</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -46,7 +64,7 @@
                 </select>
                 <h3 class="mt-2">Question 3</h1>
                 <label class="mt-2"><strong>Do you like going to the movies with friends?</strong></label><br>
-                <select name="" id="">
+                <select name="" id="q3">
                     <option value="1">1 (Strongly Agree)</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -55,7 +73,7 @@
                 </select>
                 <h3 class="mt-2">Question 4</h1>
                 <label class="mt-2"><strong>Do you like eating out with friends?</strong></label><br>
-                <select name="" id="">
+                <select name="" id="q4">
                     <option value="1">1 (Strongly Agree)</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -64,7 +82,7 @@
                 </select>
                 <h3 class="mt-2">Question 5</h1>
                 <label class="mt-2"><strong>Do you like going to sporting events with friends?</strong></label><br>
-                <select name="" id="">
+                <select name="" id="q5">
                     <option value="1">1 (Strongly Agree)</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -73,7 +91,7 @@
                 </select>
                 <h3 class="mt-2">Question 6</h1>
                 <label class="mt-2"><strong>Do you like partying?</strong></label><br>
-                <select name="" id="">
+                <select name="" id="q6">
                     <option value="1">1 (Strongly Agree)</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -82,7 +100,7 @@
                 </select>
                 <h3 class="mt-2">Question 7</h1>
                 <label class="mt-2"><strong>Is friendship important yo you ?</strong></label><br>
-                <select name="" id="">
+                <select name="" id="q7">
                     <option value="1">1 (Strongly Agree)</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -91,7 +109,7 @@
                 </select>
                 <h3 class="mt-2">Question 8</h1>
                 <label class="mt-2"><strong>Do you like watching Netflix?</strong></label><br>
-                <select name="" id="">
+                <select name="" id="q8">
                     <option value="1">1 (Strongly Agree)</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -100,7 +118,7 @@
                 </select>
                 <h3 class="mt-2">Question 9</h1>
                 <label class="mt-2"><strong>How important is friendship to you?</strong></label><br>
-                <select name="" id="" aria-placeholder="Please pick a response">
+                <select name="" id="q9" aria-placeholder="Please pick a response">
                     <option value="1">1 (Strongly Agree)</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -109,15 +127,16 @@
                 </select>
                 <h3 class="mt-2">Question 10</h3>
                 <label class="mt-2"><strong>Are you looking for new friends?</strong></label><br>
-                <select name="" id="">
+                <select name="" id="q10">
                     <option value="1">1 (Strongly Agree)</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
                     <option value="4">4</option>
                     <option value="5">5 (Strongly Disagree)</option>
                 </select>
-                <button type="button" class="btn btn-primary btn-lg mt-2 w-100">Submit <i class="fa fa-check-square" aria-hidden="true"></i></button>
+                <button type="button" class="btn btn-primary btn-lg mt-2 w-100" id="submit">Submit <i class="fa fa-check-square" aria-hidden="true"></i></button>
                 <hr>
+                <!-- Links -->
             <footer class="footer">
                     <div class="container">
                     <p><a href="/api/friends">API Friends List</a> | <a href="https://github.com/SZun/FriendFinder">GitHub Repo</a></p>
@@ -128,8 +147,39 @@
         </div>
     </div>
 
-    
-
 </body>
+
+<script>
+    $("#submit").on("click", function(event) {
+      event.preventDefault();
+
+        const user = {
+          name: $("#name").val(),
+          imageLink: $("#img").val(),
+          values: [
+            $("#q1").val(),
+            $("#q2").val(),
+            $("#q3").val(),
+            $("#q4").val(),
+            $("#q5").val(),
+            $("#q6").val(),
+            $("#q7").val(),
+            $("#q8").val(),
+            $("#q9").val(),
+            $("#q10").val()
+          ]
+        };
+
+        $.post("/api/friends", user, (res) => {
+
+          $("#friend-name").text(res.name);
+          $("#friend-img").attr("src", res.image);
+
+          $("#modal").modal("toggle");
+
+        });
+     
+    });
+</script>
 
 </html>

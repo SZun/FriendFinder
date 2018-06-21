@@ -6,7 +6,7 @@ const htmlRoutes = (app) => {
     res.sendFile(path.join(__dirname, "/../public/survey.html"));
   });
 
-  app.get("*", (req, res) => {
+  app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, "/../public/home.html"));
   });
 
