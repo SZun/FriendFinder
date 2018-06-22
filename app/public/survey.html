@@ -45,7 +45,7 @@
                 <label class="mt-2"><strong>Name</strong></label>
                 <input type='text' id="name" class="w-100" />
                 <label class="mt-2"><strong>Picture Link</strong></label>
-                <input class="w-100" id="img"/>
+                <input type='text' class="w-100" id="img"/>
                 <h3 class="mt-2">Question 1</h1>
                 <label class="mt-2"><strong>Is having fun important to your friendship?</strong></label><br>
                 <select name="" id="q1">
@@ -153,8 +153,8 @@
 
 <script>
 
-    $("#submit").on("click", (event) => {
-
+    $("#submit").on("click", (e) => {
+        e.preventDefault();
     var user = {
           name: $("#name").val(),
           image: $("#img").val(),
@@ -176,8 +176,9 @@
 
             $("#friend-name").text(res.name);
             $("#friend-img").attr("src", res.image);
+            $.noConflict();
             $("#modal").modal("toggle");
-       
+            console.log(res);
         })
 
     });
